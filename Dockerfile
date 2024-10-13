@@ -1,5 +1,5 @@
 # Use an official Maven image to build the application
-FROM maven:4.0.0-openjdk-17 AS build
+FROM maven:3.8.2-amazoncorretto-17
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
