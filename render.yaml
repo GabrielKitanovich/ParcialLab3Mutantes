@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: Parcial1Mutantes
+    env: docker
+    plan: free
+    buildCommand: ./mvnw clean install
+    startCommand: ./mvnw spring-boot:run
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://<your-database-url>:3306/db_mutantes?useSSL=false&serverTimezone=UTC
+      - key: SPRING_DATASOURCE_USERNAME
+        value: root
+      - key: SPRING_DATASOURCE_PASSWORD
+        value:
