@@ -1,8 +1,7 @@
 package org.example;
 
-
+import org.example.exceptions.DnaAlreadyExistsException;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
 
 @Service
@@ -10,6 +9,12 @@ public class MutantService {
 
     private static final int SEQUENCE_LENGTH = 4;
     private static final Set<Character> VALID_BASES = Set.of('A', 'T', 'C', 'G');
+
+    private final DnaRepository dnaRepository;
+
+    public MutantService(DnaRepository dnaRepository) {
+        this.dnaRepository = dnaRepository;
+    }
 
     public boolean isMutant(String[] dna) {
         int n = dna.length;
@@ -39,6 +44,15 @@ public class MutantService {
         }
 
         return false;
+    }
+
+    public void saveDna(String[] dna, boolean isMutant) {
+        String dnaSequence = String.join(",", dna);
+        if (dnaRepository.findBySequence(dnaSequence).isPresent()) {
+            throw new DnaAlreadyExistsException("DNA sequence already exists");
+        }
+        Dna dnaEntity = new Dna(null, dnaSequence, isMutant);
+        dnaRepository.save(dnaEntity);
     }
 
     // Verifica si hay una secuencia horizontal de 4 caracteres
@@ -90,4 +104,3 @@ public class MutantService {
         return true;
     }
 }
-
