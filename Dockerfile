@@ -5,7 +5,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN chmod +x mvnw
-RUN mvn clean install -DskipTests
+RUN ./mvnw clean install -DskipTests
 
 # Use an official OpenJDK image to run the application
 FROM openjdk:17-jdk-slim
