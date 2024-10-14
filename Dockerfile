@@ -1,5 +1,4 @@
 # Use an official Maven image to build the application
-# Use an official Maven image to build the application
 FROM maven:3.8.2-amazoncorretto-17 AS build
 
 WORKDIR /app
