@@ -10,7 +10,7 @@ RUN mvn dependency:go-offline -B
 # Copiar el resto del código fuente y compilar
 COPY . .
 RUN chmod +x mvnw
-RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean install -DskipTests -X
 
 # Etapa 2: Crear la imagen final basada en una imagen ligera de OpenJDK
 FROM openjdk:17-jdk-alpine
