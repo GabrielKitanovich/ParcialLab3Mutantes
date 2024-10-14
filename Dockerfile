@@ -1,5 +1,5 @@
 # Etapa 1: Compilar la aplicación con Maven
-FROM maven:3.8.2-amazoncorretto-17 AS build
+FROM maven:3.9.9-amazoncorretto-17 AS build
 
 WORKDIR /app
 
